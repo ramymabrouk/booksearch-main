@@ -8,5 +8,13 @@ services:
     container_name: nest-docker
     ports:
       - '3000:3000'
+    depends_on:
+      - cache
     volumes:
       - ./src:/app/src
+
+  cache:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
